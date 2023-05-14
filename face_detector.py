@@ -1,16 +1,16 @@
+import numpy as np
 import cv2
 from flask import Flask, render_template, Response
-import numpy as np
 import tensorflow as tf
-from tensorflow import keras
 from keras.models import load_model
 from tensorflow.python.keras.saving import hdf5_format
 from tensorflow.python.keras.saving.saved_model import load as saved_model_load
-import h5py
 
-#Reconocimiento de ojos
+
+# Eyes recognition
 app = Flask(__name__)
-model = tf.keras.models.load_model('modelo.h5', custom_objects={'Functional':tf.keras.models.Model})
+model = tf.keras.models.load_model('./Models/CNN_model.h5', 
+                                   custom_objects={'Functional':tf.keras.models.Model})
 
 cap = cv2.VideoCapture(0)
 
@@ -53,8 +53,7 @@ def generate():
             b'Content-Type: image/jpeg\r\n\r\n'+ frame +b'\r\n')
 
 
-#Creación de app
-
+# App creation
 @app.route('/video')
 def video():
     return Response(generate(), mimetype = 'multipart/x-mixed-replace; boundary=frame')
