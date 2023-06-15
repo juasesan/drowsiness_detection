@@ -88,7 +88,7 @@ sns.set_theme(palette="ch:s=.25,rot=-.25")
 fig,ax = plt.subplots(figsize=(8,8))
 sns.lineplot(data=loss, ax = ax, color="b", label='Training Loss')
 sns.lineplot(data=val_loss, ax = ax, color="r", label='Validation Loss')
-ax.set_xlabel("Épocas")
+ax.set_xlabel("Epoch")
 ax.set_ylabel("Loss")
 plt.savefig("./Figures/loss_result.png")
 
@@ -96,9 +96,9 @@ sns.set_theme(palette="ch:s=.25,rot=-.25")
 fig,ax = plt.subplots(figsize=(8,8))
 sns.lineplot(data=acc, ax = ax, color="b", label='Training accuracy')
 sns.lineplot(data=val_acc, ax = ax, color="r", label='Validation accuracy')
-ax.set_xlabel("Épocas")
-ax.set_ylabel("Loss")
-plt.savefig("./Figures/loss_result.png")
+ax.set_xlabel("Epoch")
+ax.set_ylabel("Accuracy")
+plt.savefig("./Figures/accuracy_result.png")
 
 
 model.save('./Models/CNN_model.h5')
@@ -106,7 +106,7 @@ model.save('./Models/CNN_model.h5')
 tf.keras.utils.plot_model(model, to_file="./Figures/model_architecture.png", show_shapes=True, show_layer_names=True)
 
 # Model testing
-test_dir = '../Data/test_eyes'
+test_dir = './Data/test_eyes'
 test_ds = tf.keras.utils.image_dataset_from_directory(
     test_dir,
     labels='inferred',
